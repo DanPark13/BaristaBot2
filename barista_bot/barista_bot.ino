@@ -1,7 +1,7 @@
 #include <Servo.h>
 
 Servo container1;
-int ledpin = 13;
+int ledpin = 11;
 int voltage_read = A0;
 int c1ButtonPin = 12;
 int container1_pos = 0;
@@ -20,10 +20,7 @@ void loop() {
    v_out = analogRead(A0);
    //Serial.print(digitalRead(c1ButtonPin) == HIGH);
    //Serial.println(500+pushTime <= millis());
-   if (digitalRead(c1ButtonPin) == HIGH && !500+pushTime <= millis()){
-    Serial.println(millis());
-    Serial.println(500+pushTime<=millis());
-   }
+  Serial.println(v_out);
    if(digitalRead(c1ButtonPin) == HIGH &&  500+pushTime <= millis()) {
       Serial.println("button pressed");
       if (backwards){
@@ -42,7 +39,8 @@ void loop() {
         container1_pos = 0;
       }
    }
-   if(v_out > 80){
+   // 200 for demo
+   if(v_out > 250){
     // analog reading of 80 is when the water temp is slightly less than 94 deg C
       digitalWrite(ledpin, HIGH);
    } else{
